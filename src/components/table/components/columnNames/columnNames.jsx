@@ -1,12 +1,10 @@
-import { tableData } from '../../../../constants/tabledata';
-
 export const ColumnNames = () => {
-	const columnNames = Object.keys(tableData[0]);
+	const selectedAttributes = ['name', 'username'];
 	return (
-		<>
-			{columnNames.map((item) => (
-				<th>{item}</th>
-			))}
-		</>
+		<tr>
+			{selectedAttributes.map((column) => {
+				return <th key={column}>{column}</th>;
+			})}
+		</tr>
 	);
 };
