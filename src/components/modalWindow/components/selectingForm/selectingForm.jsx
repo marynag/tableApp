@@ -7,7 +7,6 @@ export const SelectingForm = () => {
 	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
 
 	const attributes = Object.keys(tableData[0]);
-
 	const avaliableAttributes = attributes
 		.filter((x) => !selectedColumns.includes(x))
 		.concat(selectedColumns.filter((x) => !attributes.includes(x)));
@@ -16,6 +15,16 @@ export const SelectingForm = () => {
 
 	const handleChangeInput = (event) => {
 		setInput(event.target.value);
+	};
+
+	const dragEndHandler = (e, column) => {
+		const temp = [...selectedColumns];
+		temp.push(column);
+		const newAvaliableColumns = avaliableColumns.filter(function (item) {
+			return item !== column;
+		});
+		setAvaliableColumns(newAvaliableColumns);
+		setSelectedColumns(temp);
 	};
 
 	const handleSelectColumn = (selectedColumn) => {
@@ -41,7 +50,12 @@ export const SelectingForm = () => {
 					<p>Avaliable columns</p>
 					{avaliableColumns.map((item) => {
 						return (
-							<div className={styles.selectedAttribute}>
+							<div
+								key={item}
+								className={styles.selectedAttribute}
+								onDragEnd={(e) => dragEndHandler(e, item)}
+								draggable={true}
+							>
 								<p>{item.toUpperCase()}</p>
 							</div>
 						);
@@ -51,9 +65,18 @@ export const SelectingForm = () => {
 					<p>Selected columns</p>
 					{selectedColumns.map((item) => {
 						return (
-							<div className={styles.selectedAttribute}>
+							<div
+								key={item}
+								className={styles.selectedAttribute}
+								onDragEnd={(e) => dragEndHandler(e)}
+							>
 								<p>{item.toUpperCase()}</p>
-								<p onClick={() => handleSelectColumn(item)}>x</p>
+								<p
+									onClick={() => handleSelectColumn(item)}
+									className={styles.removingAttribute}
+								>
+									x
+								</p>
 							</div>
 						);
 					})}
