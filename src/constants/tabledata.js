@@ -18,3 +18,5 @@ export const tableData = [
 		company: 'Deckow-Crest',
 	},
 ];
+
+export const selectedAttributes = ['name', 'username', 'email'];

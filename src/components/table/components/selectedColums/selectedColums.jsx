@@ -1,5 +1,6 @@
+import { selectedAttributes } from '../../../../constants/tabledata';
+
 export const SelectedColums = ({ userInfo }) => {
-	const selectedAttributes = ['name', 'username'];
 	return (
 		<>
 			{selectedAttributes.map((column) => {
