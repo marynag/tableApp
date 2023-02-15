@@ -32,7 +32,7 @@ export const ModalWindow = () => {
 				aria-describedby='modal-modal-description'
 			>
 				<Box sx={style}>
-					<SelectingForm />
+					<SelectingForm setOpen={setOpen} />
 				</Box>
 			</Modal>
 		</>

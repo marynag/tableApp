@@ -1,9 +1,10 @@
-import { selectedAttributes } from '../../../../constants/tabledata';
+import { useSelector } from 'react-redux';
 
 export const SelectedColums = ({ userInfo }) => {
+	const selectedColunms = useSelector((state) => state);
 	return (
 		<>
-			{selectedAttributes.map((column) => {
+			{selectedColunms.map((column) => {
 				return <td key={userInfo[column]}>{userInfo[column]}</td>;
 			})}
 		</>
