@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { SelectingForm } from './components/selectingForm/selectingForm';
+import styles from './modalWindow.module.scss';
 
 const style = {
 	position: 'absolute',
@@ -21,7 +22,9 @@ export const ModalWindow = () => {
 	const handleClose = () => setOpen(false);
 	return (
 		<>
-			<button onClick={handleOpen}>Selected Columns</button>
+			<button onClick={handleOpen} className={styles.modalButton}>
+				Selected Columns
+			</button>
 			<Modal
 				open={open}
 				onClose={handleClose}

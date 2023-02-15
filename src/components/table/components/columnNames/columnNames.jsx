@@ -3,7 +3,7 @@ export const ColumnNames = () => {
 	return (
 		<tr>
 			{selectedAttributes.map((column) => {
-				return <th key={column}>{column}</th>;
+				return <th key={column}>{column.toUpperCase()}</th>;
 			})}
 		</tr>
 	);
