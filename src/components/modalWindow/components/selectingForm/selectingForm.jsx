@@ -13,6 +13,10 @@ export const SelectingForm = () => {
 
 	const [avaliableColumns, setAvaliableColumns] = useState(avaliableAttributes);
 
+	const filteredAvaliableColumns = avaliableColumns.filter((item) =>
+		item.toLowerCase().includes(input.toLowerCase())
+	);
+
 	const handleChangeInput = (event) => {
 		setInput(event.target.value);
 	};
@@ -48,7 +52,7 @@ export const SelectingForm = () => {
 			<div className={styles.selectingColumn}>
 				<div className={styles.selectingBox}>
 					<p>Avaliable columns</p>
-					{avaliableColumns.map((item) => {
+					{filteredAvaliableColumns.map((item) => {
 						return (
 							<div
 								key={item}
