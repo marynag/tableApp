@@ -9,8 +9,10 @@ export const ModalWindow = () => {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	return (
-		<>
-			<StyledButton onClick={handleOpen}>Selected Columns</StyledButton>
+		<div data-testid='modalWindow'>
+			<StyledButton onClick={handleOpen} data-testid='moduleButton'>
+				Selected Columns
+			</StyledButton>
 			<Modal
 				open={open}
 				onClose={handleClose}
@@ -21,6 +23,6 @@ export const ModalWindow = () => {
 					<SelectingForm setOpen={setOpen} />
 				</StyledBox>
 			</Modal>
-		</>
+		</div>
 	);
 };
