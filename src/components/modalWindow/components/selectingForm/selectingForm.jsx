@@ -58,7 +58,7 @@ export const SelectingForm = (props) => {
 		setSelectedColumns(newSelectedColumns);
 	};
 	return (
-		<StyledSelectingFormWrapper>
+		<StyledSelectingFormWrapper data-testid='selectingForm'>
 			<StyledInput
 				type='text'
 				value={input}
@@ -74,6 +74,7 @@ export const SelectingForm = (props) => {
 								key={item}
 								onDragEnd={(e) => dragEndHandler(e, item)}
 								draggable={true}
+								data-testid='avaliableColumns'
 							>
 								<p>{item.toUpperCase()}</p>
 							</StyledSelectedAttribute>
@@ -88,7 +89,7 @@ export const SelectingForm = (props) => {
 								key={item}
 								onDragEnd={(e) => dragEndHandler(e)}
 							>
-								<p>{item.toUpperCase()}</p>
+								<p data-testid='selectedColumns'>{item.toUpperCase()}</p>
 								<StyledremovingAttribute
 									onClick={() => handleSelectColumn(item)}
 								>
