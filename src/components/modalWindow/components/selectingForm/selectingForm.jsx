@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { tableData } from '../../../../constants/tabledata';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	StyledButton,
 	StyledInput,
 	StyledremovingAttribute,
 	StyledSelectedAttribute,
@@ -10,6 +9,7 @@ import {
 	StyledSelectingColumn,
 	StyledSelectingFormWrapper,
 } from './selectingForm.styled';
+import { StyledButton } from '../../../common/common.styled';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
