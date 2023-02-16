@@ -20,3 +20,15 @@ test('display table component', async () => {
 	const courses = getByTestId('tableWrapper');
 	expect(courses).toBeInTheDocument();
 });
+
+test('Not to display table if state array length is 0 in Courses', async () => {
+	mockedStore.getState().length = 0;
+	const { getAllByTestId, getByTestId } = render(
+		<Provider store={mockedStore}>
+			<Table />
+		</Provider>
+	);
+
+	const column = screen.queryByTestId('selectedColumn');
+	expect(column).not.toBeInTheDocument();
+});
