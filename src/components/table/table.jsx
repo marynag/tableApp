@@ -5,7 +5,7 @@ import { StyledTable, StyledTableWrapper } from './table.styled';
 
 export const Table = () => {
 	return (
-		<StyledTableWrapper>
+		<StyledTableWrapper data-testid='tableWrapper'>
 			<ModalWindow />
 			<StyledTable>
 				<ColumnNames />
