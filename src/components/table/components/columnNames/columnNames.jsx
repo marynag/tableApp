@@ -1,12 +1,21 @@
 import { useSelector } from 'react-redux';
+import {
+	StyledColumnNames,
+	StyledSelectedNamesRow,
+} from './columnNames.styled';
 
 export const ColumnNames = () => {
 	const selectedColunms = useSelector((state) => state);
+
 	return (
-		<tr>
+		<StyledSelectedNamesRow>
 			{selectedColunms.map((column) => {
-				return <th key={column}>{column.toUpperCase()}</th>;
+				return (
+					<StyledColumnNames key={column}>
+						{column.toUpperCase()}
+					</StyledColumnNames>
+				);
 			})}
-		</tr>
+		</StyledSelectedNamesRow>
 	);
 };

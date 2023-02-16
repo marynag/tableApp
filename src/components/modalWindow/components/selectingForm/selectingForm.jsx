@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import styles from './selectingForm.module.scss';
 import { tableData } from '../../../../constants/tabledata';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+	StyledButton,
+	StyledInput,
+	StyledremovingAttribute,
+	StyledSelectedAttribute,
+	StyledSelectingBox,
+	StyledSelectingColumn,
+	StyledSelectingFormWrapper,
+} from './selectingForm.styled';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
@@ -50,51 +58,48 @@ export const SelectingForm = (props) => {
 		setSelectedColumns(newSelectedColumns);
 	};
 	return (
-		<div className={styles.selectingFormWrapper}>
-			<input
+		<StyledSelectingFormWrapper>
+			<StyledInput
 				type='text'
 				value={input}
 				placeholder='Search available columns...'
 				onChange={handleChangeInput}
 			/>
-			<div className={styles.selectingColumn}>
-				<div className={styles.selectingBox}>
+			<StyledSelectingColumn>
+				<StyledSelectingBox>
 					<p>Avaliable columns</p>
 					{filteredAvaliableColumns.map((item) => {
 						return (
-							<div
+							<StyledSelectedAttribute
 								key={item}
-								className={styles.selectedAttribute}
 								onDragEnd={(e) => dragEndHandler(e, item)}
 								draggable={true}
 							>
 								<p>{item.toUpperCase()}</p>
-							</div>
+							</StyledSelectedAttribute>
 						);
 					})}
-				</div>
-				<div className={styles.selectingBox}>
+				</StyledSelectingBox>
+				<StyledSelectingBox>
 					<p>Selected columns</p>
 					{selectedColumns.map((item) => {
 						return (
-							<div
+							<StyledSelectedAttribute
 								key={item}
-								className={styles.selectedAttribute}
 								onDragEnd={(e) => dragEndHandler(e)}
 							>
 								<p>{item.toUpperCase()}</p>
-								<p
+								<StyledremovingAttribute
 									onClick={() => handleSelectColumn(item)}
-									className={styles.removingAttribute}
 								>
 									x
-								</p>
-							</div>
+								</StyledremovingAttribute>
+							</StyledSelectedAttribute>
 						);
 					})}
-				</div>
-			</div>
-			<button onClick={handleClickApply}>Apply</button>
-		</div>
+				</StyledSelectingBox>
+			</StyledSelectingColumn>
+			<StyledButton onClick={handleClickApply}>Apply</StyledButton>
+		</StyledSelectingFormWrapper>
 	);
 };

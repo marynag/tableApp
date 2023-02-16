@@ -1,11 +1,17 @@
 import { useSelector } from 'react-redux';
+import { StyledColumns } from './selectedColums.styled';
 
 export const SelectedColums = ({ userInfo }) => {
 	const selectedColunms = useSelector((state) => state);
+
 	return (
 		<>
 			{selectedColunms.map((column) => {
-				return <td key={userInfo[column]}>{userInfo[column]}</td>;
+				return (
+					<StyledColumns key={userInfo[column]}>
+						{userInfo[column]}
+					</StyledColumns>
+				);
 			})}
 		</>
 	);

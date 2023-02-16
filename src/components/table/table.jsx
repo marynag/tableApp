@@ -1,16 +1,16 @@
 import { Rows } from './components/rows/rows';
 import { ColumnNames } from './components/columnNames/columnNames';
-import styles from './table.module.scss';
 import { ModalWindow } from '../modalWindow/modalWindow';
+import { StyledTable, StyledTableWrapper } from './table.styled';
 
 export const Table = () => {
 	return (
-		<div className={styles.tableWrapper}>
+		<StyledTableWrapper>
 			<ModalWindow />
-			<table>
+			<StyledTable>
 				<ColumnNames />
 				<Rows />
-			</table>
-		</div>
+			</StyledTable>
+		</StyledTableWrapper>
 	);
 };

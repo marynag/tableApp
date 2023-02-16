@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { SelectingForm } from './components/selectingForm/selectingForm';
-import styles from './modalWindow.module.scss';
+import { StyledBox, StyledButton } from './modalWindow.styled';
 
 export const ModalWindow = () => {
 	const [open, setOpen] = useState(false);
@@ -10,16 +9,16 @@ export const ModalWindow = () => {
 	const handleClose = () => setOpen(false);
 	return (
 		<>
-			<button onClick={handleOpen}>Selected Columns</button>
+			<StyledButton onClick={handleOpen}>Selected Columns</StyledButton>
 			<Modal
 				open={open}
 				onClose={handleClose}
 				aria-labelledby='modal-modal-title'
 				aria-describedby='modal-modal-description'
 			>
-				<Box className={styles.box}>
+				<StyledBox>
 					<SelectingForm setOpen={setOpen} />
-				</Box>
+				</StyledBox>
 			</Modal>
 		</>
 	);
