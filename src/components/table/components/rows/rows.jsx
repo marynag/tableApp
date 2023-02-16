@@ -6,7 +6,7 @@ export const Rows = () => {
 		<>
 			{tableData.map((userInfo) => {
 				return (
-					<tr key={userInfo.username}>
+					<tr key={userInfo.id}>
 						<SelectedColums userInfo={userInfo} />
 					</tr>
 				);

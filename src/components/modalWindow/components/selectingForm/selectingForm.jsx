@@ -50,7 +50,7 @@ export const SelectingForm = (props) => {
 		setSelectedColumns(newSelectedColumns);
 	};
 	return (
-		<div>
+		<div className={styles.selectingFormWrapper}>
 			<input
 				type='text'
 				value={input}
@@ -94,9 +94,7 @@ export const SelectingForm = (props) => {
 					})}
 				</div>
 			</div>
-			<button className={styles.modalButton} onClick={handleClickApply}>
-				Apply
-			</button>
+			<button onClick={handleClickApply}>Apply</button>
 		</div>
 	);
 };
