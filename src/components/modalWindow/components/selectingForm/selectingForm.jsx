@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import styles from './selectingForm.module.scss';
-import { selectedAttributes, tableData } from '../../../../constants/tabledata';
+import { tableData } from '../../../../constants/tabledata';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const SelectingForm = () => {
+export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
+	const selectedAttributes = useSelector((state) => state);
 	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
+	const dispatch = useDispatch();
 
 	const attributes = Object.keys(tableData[0]);
 	const avaliableAttributes = attributes
@@ -31,6 +34,11 @@ export const SelectingForm = () => {
 		setSelectedColumns(temp);
 	};
 
+	const handleClickApply = () => {
+		dispatch({ type: 'UPDATE_COLUMNS', payload: selectedColumns });
+		props.setOpen(false);
+	};
+
 	const handleSelectColumn = (selectedColumn) => {
 		const temp = [...avaliableColumns];
 		temp.push(selectedColumn);
@@ -42,7 +50,7 @@ export const SelectingForm = () => {
 		setSelectedColumns(newSelectedColumns);
 	};
 	return (
-		<div>
+		<div className={styles.selectingFormWrapper}>
 			<input
 				type='text'
 				value={input}
@@ -86,7 +94,7 @@ export const SelectingForm = () => {
 					})}
 				</div>
 			</div>
-			<button className={styles.modalButton}>Apply</button>
+			<button onClick={handleClickApply}>Apply</button>
 		</div>
 	);
 };
