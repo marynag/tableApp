@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	StyledInput,
@@ -10,28 +10,21 @@ import {
 } from './selectingForm.styled';
 import { StyledButton } from '../../../common/common.styled';
 import {
+	getAvailableAttributes,
 	getSelectedColumnNames,
-	getTableData,
 } from '../../../../store/selectors';
+import { UPDATE_COLUMNS } from '../../../../store/actionTypes';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
-	const [selectedColumns, setSelectedColumns] = useState([]);
-	const [avaliableColumns, setAvaliableColumns] = useState([]);
+	const [dragedItem, setDragedItem] = useState();
+
 	const dispatch = useDispatch();
-
 	const selectedAttributes = useSelector(getSelectedColumnNames);
-	const tableData = useSelector(getTableData);
+	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
 
-	useEffect(() => {
-		const attributes = Object.keys(tableData[0]);
-		const avaliableAttributes = attributes
-			.filter((x) => !selectedAttributes.includes(x))
-			.concat(selectedAttributes.filter((x) => !attributes.includes(x)));
-
-		setSelectedColumns(selectedAttributes);
-		setAvaliableColumns(avaliableAttributes);
-	}, [tableData, selectedAttributes]);
+	const attributes = useSelector(getAvailableAttributes);
+	const [avaliableColumns, setAvaliableColumns] = useState(attributes);
 
 	const filteredAvaliableColumns = avaliableColumns.filter((item) =>
 		item.toLowerCase().includes(input.toLowerCase())
@@ -41,18 +34,27 @@ export const SelectingForm = (props) => {
 		setInput(event.target.value);
 	};
 
-	const dragEndHandler = (e, column) => {
+	const handleDrag = (e, item) => {
+		e.preventDefault();
+		setDragedItem(item);
+	};
+
+	const handleOnDrop = () => {
 		const temp = [...selectedColumns];
-		temp.push(column);
-		const newAvaliableColumns = avaliableColumns.filter(function (item) {
-			return item !== column;
-		});
-		setAvaliableColumns(newAvaliableColumns);
+		temp.push(dragedItem);
+		const avaliableColumnsFiltered = avaliableColumns.filter(
+			(item) => item !== dragedItem
+		);
+		setAvaliableColumns(avaliableColumnsFiltered);
 		setSelectedColumns(temp);
 	};
 
+	const handleOnDragOver = (e) => {
+		e.preventDefault();
+	};
+
 	const handleClickApply = () => {
-		dispatch({ type: 'UPDATE_COLUMNS', payload: selectedColumns });
+		dispatch({ type: UPDATE_COLUMNS, payload: selectedColumns });
 		props.setOpen(false);
 	};
 
@@ -61,10 +63,10 @@ export const SelectingForm = (props) => {
 		temp.push(selectedColumn);
 		setAvaliableColumns(temp);
 
-		const newSelectedColumns = selectedColumns.filter(function (item) {
+		const selectedColumnsFiltered = selectedColumns.filter(function (item) {
 			return item !== selectedColumn;
 		});
-		setSelectedColumns(newSelectedColumns);
+		setSelectedColumns(selectedColumnsFiltered);
 	};
 	return (
 		<StyledSelectingFormWrapper data-testid='selectingForm'>
@@ -81,23 +83,23 @@ export const SelectingForm = (props) => {
 						return (
 							<StyledSelectedAttribute
 								key={item}
-								onDragEnd={(e) => dragEndHandler(e, item)}
 								draggable={true}
 								data-testid='avaliableColumns'
+								onDrag={(e) => handleDrag(e, item)}
 							>
 								<p>{item.toUpperCase()}</p>
 							</StyledSelectedAttribute>
 						);
 					})}
 				</StyledSelectingBox>
-				<StyledSelectingBox>
+				<StyledSelectingBox
+					onDrop={handleOnDrop}
+					onDragOver={(event) => handleOnDragOver(event)}
+				>
 					<p>Selected columns</p>
 					{selectedColumns.map((item) => {
 						return (
-							<StyledSelectedAttribute
-								key={item}
-								onDragEnd={(e) => dragEndHandler(e)}
-							>
+							<StyledSelectedAttribute key={item}>
 								<p data-testid='selectedColumns'>{item.toUpperCase()}</p>
 								<StyledRemovingAttribute
 									onClick={() => handleSelectColumn(item)}
