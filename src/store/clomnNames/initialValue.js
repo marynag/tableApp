@@ -1,4 +1,4 @@
-import { tableData } from '../constants/tabledata';
+import { tableData } from '../../constants/tabledata';
 
 const values = Object.keys(tableData[0]);
 

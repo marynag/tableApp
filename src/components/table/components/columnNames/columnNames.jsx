@@ -3,9 +3,10 @@ import {
 	StyledColumnNames,
 	StyledSelectedNamesRow,
 } from './columnNames.styled';
+import { getSelectedColumnNames } from '../../../../store/selectors';
 
 export const ColumnNames = () => {
-	const selectedColunms = useSelector((state) => state);
+	const selectedColunms = useSelector(getSelectedColumnNames);
 
 	return (
 		<StyledSelectedNamesRow>

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { tableData } from '../../../../constants/tabledata';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	StyledInput,
@@ -10,19 +9,29 @@ import {
 	StyledSelectingFormWrapper,
 } from './selectingForm.styled';
 import { StyledButton } from '../../../common/common.styled';
+import {
+	getSelectedColumnNames,
+	getTableData,
+} from '../../../../store/selectors';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
-	const selectedAttributes = useSelector((state) => state);
-	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
+	const [selectedColumns, setSelectedColumns] = useState([]);
+	const [avaliableColumns, setAvaliableColumns] = useState([]);
 	const dispatch = useDispatch();
 
-	const attributes = Object.keys(tableData[0]);
-	const avaliableAttributes = attributes
-		.filter((x) => !selectedColumns.includes(x))
-		.concat(selectedColumns.filter((x) => !attributes.includes(x)));
+	const selectedAttributes = useSelector(getSelectedColumnNames);
+	const tableData = useSelector(getTableData);
 
-	const [avaliableColumns, setAvaliableColumns] = useState(avaliableAttributes);
+	useEffect(() => {
+		const attributes = Object.keys(tableData[0]);
+		const avaliableAttributes = attributes
+			.filter((x) => !selectedAttributes.includes(x))
+			.concat(selectedAttributes.filter((x) => !attributes.includes(x)));
+
+		setSelectedColumns(selectedAttributes);
+		setAvaliableColumns(avaliableAttributes);
+	}, [tableData, selectedAttributes]);
 
 	const filteredAvaliableColumns = avaliableColumns.filter((item) =>
 		item.toLowerCase().includes(input.toLowerCase())
