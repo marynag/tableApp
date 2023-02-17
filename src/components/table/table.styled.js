@@ -26,3 +26,8 @@ export const StyledTable = styled.table`
 		overscroll: scroll;
 	}
 `;
+
+export const StyledTableBody = styled.tbody`
+	width: 100%;
+	display: table;
+`;
