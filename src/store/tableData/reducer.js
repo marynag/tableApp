@@ -1,8 +1,8 @@
 import { initialValue } from './initialValue';
 
-export const reducer = (state = initialValue, action) => {
+export const tableDataReducer = (state = [], action) => {
 	switch (action.type) {
-		case 'UPDATE_COLUMNS':
+		case 'GET_TABLE_DATA':
 			return action.payload;
 		default:
 			return state;

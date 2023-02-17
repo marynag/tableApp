@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { tableData } from '../../../../constants/tabledata';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	StyledInput,
@@ -10,13 +9,19 @@ import {
 	StyledSelectingFormWrapper,
 } from './selectingForm.styled';
 import { StyledButton } from '../../../common/common.styled';
+import {
+	getSelectedColumnNames,
+	getTableData,
+} from '../../../../store/selectors';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
-	const selectedAttributes = useSelector((state) => state);
 	const [selectedColumns, setSelectedColumns] = useState([]);
 	const [avaliableColumns, setAvaliableColumns] = useState([]);
 	const dispatch = useDispatch();
+
+	const selectedAttributes = useSelector(getSelectedColumnNames);
+	const tableData = useSelector(getTableData);
 
 	useEffect(() => {
 		const attributes = Object.keys(tableData[0]);
@@ -26,7 +31,7 @@ export const SelectingForm = (props) => {
 
 		setSelectedColumns(selectedAttributes);
 		setAvaliableColumns(avaliableAttributes);
-	}, []);
+	}, [tableData, selectedAttributes]);
 
 	const filteredAvaliableColumns = avaliableColumns.filter((item) =>
 		item.toLowerCase().includes(input.toLowerCase())

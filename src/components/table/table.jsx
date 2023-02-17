@@ -3,9 +3,11 @@ import { ColumnNames } from './components/columnNames/columnNames';
 import { ModalWindow } from '../modalWindow/modalWindow';
 import { StyledTable, StyledTableWrapper } from './table.styled';
 import { useSelector } from 'react-redux';
+import { getSelectedColumnNames } from '../../store/selectors';
 
 export const Table = () => {
-	const selectedColunms = useSelector((state) => state);
+	const selectedColunms = useSelector(getSelectedColumnNames);
+
 	return (
 		<StyledTableWrapper data-testid='tableWrapper'>
 			<ModalWindow />
