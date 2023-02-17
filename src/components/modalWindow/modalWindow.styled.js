@@ -9,4 +9,8 @@ export const StyledBox = styled.div`
 	background-color: rgb(31, 33, 39);
 	border-radius: 15px;
 	padding: 25px;
+	@media screen and (max-width: 768px) {
+		width: 250px;
+		padding: 7px;
+	}
 `;

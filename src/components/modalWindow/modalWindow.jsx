@@ -11,7 +11,7 @@ export const ModalWindow = () => {
 	return (
 		<div data-testid='modalWindow'>
 			<StyledButton onClick={handleOpen} data-testid='moduleButton'>
-				Selected Columns
+				Select Columns
 			</StyledButton>
 			<Modal
 				open={open}

@@ -9,4 +9,7 @@ export const StyledButton = styled.button`
 	border: none;
 	width: 150px;
 	align-self: flex-end;
+	@media screen and (max-width: 768px) {
+		width: 100px;
+	}
 `;
