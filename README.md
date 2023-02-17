@@ -3,11 +3,11 @@
 Table App is an application that will help users to display information with selected attributes.
 
 ## Features:
-* User can view an informaniton in tha table
-* User can edid selected columns in modal window
-* User can remore selected attributes by clicking on "x"
-* User can select attributes from avaliable attributes using drag-and-drop
-* User can search avaliable attributes
+* User can view an information in tha table
+* User can edit selected columns in modal window
+* User can remove selected attributes by clicking on "x"
+* User can select attributes from available attributes using drag-and-drop
+* User can search available attributes
 
 The app was created using React, Redux and yarn as package manager.
 
