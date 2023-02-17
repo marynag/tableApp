@@ -9,4 +9,8 @@ export const StyledApp = styled.div`
 		height: inherit;
 		margin-top: 20px;
 	}
+	@media screen and (min-width: 1600px) and (max-width: 1950px) {
+		margin-top: 100px;
+		height: inherit;
+	}
 `;

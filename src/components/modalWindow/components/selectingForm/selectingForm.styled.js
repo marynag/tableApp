@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledSelectedAttribute = styled.div`
 	padding: 0 25px;
 	display: flex;
-	margin: 15px 25px;
+	margin: 5px 10px;
 	justify-content: space-between;
 	background-color: #1f2127;
 	border-radius: 15px;
@@ -15,12 +15,18 @@ export const StyledSelectedAttribute = styled.div`
 `;
 
 export const StyledSelectingBox = styled.div`
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	background-color: rgb(25, 27, 31);
+	gap: 5px;
 	width: 45%;
 	border-radius: 15px;
-	height: 600px;
 	@media screen and (max-width: 768px) {
 		height: 470px;
+	}
+	@media screen and (min-width: 1600px) and (max-width: 1950px) {
+		font-size: 13px;
+		height: 450px;
 	}
 `;
 
