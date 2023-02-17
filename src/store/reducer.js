@@ -1,8 +1,9 @@
 import { initialValue } from './initialValue';
+import { UPDATE_COLUMNS } from './actionTypes';
 
-export const columnNamesReducer = (state = initialValue, action) => {
+export const reducer = (state = initialValue, action) => {
 	switch (action.type) {
-		case 'UPDATE_COLUMNS':
+		case UPDATE_COLUMNS:
 			return action.payload;
 		default:
 			return state;
