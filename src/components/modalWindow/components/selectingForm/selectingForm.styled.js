@@ -12,21 +12,19 @@ export const StyledSelectedAttribute = styled.div`
 		margin: 7px 4px;
 		padding: 0 5px;
 	}
+	@media screen and (min-width: 1600px) and (max-width: 1950px) {
+		font-size: 13px;
+	}
 `;
 
 export const StyledSelectingBox = styled.div`
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: repeat(9, 1fr);
 	background-color: rgb(25, 27, 31);
-	gap: 5px;
 	width: 45%;
 	border-radius: 15px;
-	@media screen and (max-width: 768px) {
-		height: 470px;
-	}
 	@media screen and (min-width: 1600px) and (max-width: 1950px) {
 		font-size: 13px;
-		height: 450px;
 	}
 `;
 
@@ -34,6 +32,7 @@ export const StyledSelectingFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 50px;
+	font-size: 13px;
 	@media screen and (max-width: 768px) {
 		padding: 10px;
 	}
