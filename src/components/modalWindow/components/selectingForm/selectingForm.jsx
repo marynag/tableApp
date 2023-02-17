@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	StyledInput,
@@ -17,6 +17,8 @@ import { UPDATE_COLUMNS } from '../../../../store/actionTypes';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
+	const [dragedItem, setDragedItem] = useState();
+
 	const dispatch = useDispatch();
 	const selectedAttributes = useSelector(getSelectedColumnNames);
 	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
@@ -32,15 +34,23 @@ export const SelectingForm = (props) => {
 		setInput(event.target.value);
 	};
 
-	const dragEndHandler = (e, column) => {
-		const temp = [...selectedColumns];
-		temp.push(column);
+	const handleDrag = (e, item) => {
+		e.preventDefault();
+		setDragedItem(item);
+	};
 
+	const handleOnDrop = () => {
+		const temp = [...selectedColumns];
+		temp.push(dragedItem);
 		const avaliableColumnsFiltered = avaliableColumns.filter(
-			(item) => item !== column
+			(item) => item !== dragedItem
 		);
 		setAvaliableColumns(avaliableColumnsFiltered);
 		setSelectedColumns(temp);
+	};
+
+	const handleOnDragOver = (e) => {
+		e.preventDefault();
 	};
 
 	const handleClickApply = () => {
@@ -73,23 +83,23 @@ export const SelectingForm = (props) => {
 						return (
 							<StyledSelectedAttribute
 								key={item}
-								onDragEnd={(e) => dragEndHandler(e, item)}
 								draggable={true}
 								data-testid='avaliableColumns'
+								onDrag={(e) => handleDrag(e, item)}
 							>
 								<p>{item.toUpperCase()}</p>
 							</StyledSelectedAttribute>
 						);
 					})}
 				</StyledSelectingBox>
-				<StyledSelectingBox>
+				<StyledSelectingBox
+					onDrop={handleOnDrop}
+					onDragOver={(event) => handleOnDragOver(event)}
+				>
 					<p>Selected columns</p>
 					{selectedColumns.map((item) => {
 						return (
-							<StyledSelectedAttribute
-								key={item}
-								onDragEnd={(e) => dragEndHandler(e)}
-							>
+							<StyledSelectedAttribute key={item}>
 								<p data-testid='selectedColumns'>{item.toUpperCase()}</p>
 								<StyledRemovingAttribute
 									onClick={() => handleSelectColumn(item)}
