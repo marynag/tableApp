@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	StyledInput,
-	StyledremovingAttribute,
+	StyledRemovingAttribute,
 	StyledSelectedAttribute,
 	StyledSelectingBox,
 	StyledSelectingColumn,
@@ -99,11 +99,11 @@ export const SelectingForm = (props) => {
 								onDragEnd={(e) => dragEndHandler(e)}
 							>
 								<p data-testid='selectedColumns'>{item.toUpperCase()}</p>
-								<StyledremovingAttribute
+								<StyledRemovingAttribute
 									onClick={() => handleSelectColumn(item)}
 								>
 									x
-								</StyledremovingAttribute>
+								</StyledRemovingAttribute>
 							</StyledSelectedAttribute>
 						);
 					})}

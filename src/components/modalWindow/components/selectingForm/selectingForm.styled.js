@@ -7,6 +7,11 @@ export const StyledSelectedAttribute = styled.div`
 	justify-content: space-between;
 	background-color: #1f2127;
 	border-radius: 15px;
+	@media screen and (max-width: 768px) {
+		font-size: 13px;
+		margin: 7px 4px;
+		padding: 0 5px;
+	}
 `;
 
 export const StyledSelectingBox = styled.div`
@@ -14,12 +19,18 @@ export const StyledSelectingBox = styled.div`
 	width: 45%;
 	border-radius: 15px;
 	height: 600px;
+	@media screen and (max-width: 768px) {
+		height: 470px;
+	}
 `;
 
 export const StyledSelectingFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 50px;
+	@media screen and (max-width: 768px) {
+		padding: 10px;
+	}
 `;
 
 export const StyledSelectingColumn = styled.div`
@@ -37,9 +48,12 @@ export const StyledInput = styled.input`
 	border-radius: 10px;
 	color: #ffffff;
 	width: 250px;
+	@media screen and (max-width: 768px) {
+		width: 90%;
+	}
 `;
 
-export const StyledremovingAttribute = styled.p`
+export const StyledRemovingAttribute = styled.p`
 	&:hover {
 		color: rgb(187, 91, 244);
 		cursor: pointer;
