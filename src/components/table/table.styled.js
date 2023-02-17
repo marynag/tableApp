@@ -23,5 +23,6 @@ export const StyledTable = styled.table`
 		display: -webkit-box;
 		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
+		overscroll: scroll;
 	}
 `;
