@@ -11,7 +11,7 @@ export const ColumnNames = () => {
 		<StyledSelectedNamesRow>
 			{selectedColunms.map((column) => {
 				return (
-					<StyledColumnNames key={column}>
+					<StyledColumnNames key={column} data-testid='columnName'>
 						{column.toUpperCase()}
 					</StyledColumnNames>
 				);

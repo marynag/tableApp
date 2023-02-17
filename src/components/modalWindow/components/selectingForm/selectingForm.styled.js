@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button`
-	margin-top: 20px;
-	align-self: flex-end;
-	width: 150px;
-	padding: 8px;
-	border-radius: 8px;
-	margin-bottom: 20px;
-	color: white;
-	background-color: rgb(187, 91, 244);
-	border: none;
-`;
-
 export const StyledSelectedAttribute = styled.div`
 	padding: 0 25px;
 	display: flex;

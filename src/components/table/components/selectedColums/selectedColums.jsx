@@ -8,7 +8,7 @@ export const SelectedColums = ({ userInfo }) => {
 		<>
 			{selectedColunms.map((column) => {
 				return (
-					<StyledColumns key={userInfo[column]}>
+					<StyledColumns key={userInfo[column]} data-testid='selectedColumn'>
 						{userInfo[column]}
 					</StyledColumns>
 				);
