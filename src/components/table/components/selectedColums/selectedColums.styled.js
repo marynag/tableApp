@@ -8,13 +8,9 @@ export const StyledColumns = styled.td`
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
-
-	@supports (-webkit-line-clamp: 1) {
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: initial;
-		display: -webkit-box;
-		-webkit-line-clamp: 1;
-		-webkit-box-orient: vertical;
-	}
+  
+  @media screen and (max-width: 768px) {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 13px;
 `;

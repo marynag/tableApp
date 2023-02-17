@@ -1,9 +1,13 @@
-import { Rows } from './components/rows/rows';
-import { ColumnNames } from './components/columnNames/columnNames';
-import { ModalWindow } from '../modalWindow/modalWindow';
-import { StyledTable, StyledTableWrapper } from './table.styled';
+import { ColumnNames } from './components/columnNames';
+import { Rows } from './components/rows';
+import {
+	StyledTable,
+	StyledTableBody,
+	StyledTableWrapper,
+} from './table.styled';
 import { useSelector } from 'react-redux';
 import { getSelectedColumnNames } from '../../store/selectors';
+import { ModalWindow } from '../modalWindow';
 
 export const Table = () => {
 	const selectedColunms = useSelector(getSelectedColumnNames);
@@ -13,8 +17,10 @@ export const Table = () => {
 			<ModalWindow />
 			{!!selectedColunms.length && (
 				<StyledTable>
-					<ColumnNames />
-					<Rows />
+					<StyledTableBody>
+						<ColumnNames />
+						<Rows />
+					</StyledTableBody>
 				</StyledTable>
 			)}
 		</StyledTableWrapper>

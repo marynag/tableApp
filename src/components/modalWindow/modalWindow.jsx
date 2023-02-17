@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { SelectingForm } from './components/selectingForm/selectingForm';
 import { StyledBox } from './modalWindow.styled';
 import { StyledButton } from '../common/common.styled';
+import { SelectingForm } from './components/selectingForm';
 
 export const ModalWindow = () => {
 	const [open, setOpen] = useState(false);
