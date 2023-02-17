@@ -1,6 +1,5 @@
-import { Rows } from './components/rows/rows';
-import { ColumnNames } from './components/columnNames/columnNames';
-import { ModalWindow } from '../modalWindow/modalWindow';
+import { ColumnNames } from './components/columnNames';
+import { Rows } from './components/rows';
 import {
 	StyledTable,
 	StyledTableBody,
@@ -8,6 +7,7 @@ import {
 } from './table.styled';
 import { useSelector } from 'react-redux';
 import { getSelectedColumnNames } from '../../store/selectors';
+import { ModalWindow } from '../modalWindow';
 
 export const Table = () => {
 	const selectedColunms = useSelector(getSelectedColumnNames);
