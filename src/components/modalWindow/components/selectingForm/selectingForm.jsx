@@ -10,28 +10,19 @@ import {
 } from './selectingForm.styled';
 import { StyledButton } from '../../../common/common.styled';
 import {
+	getAvailableAttributes,
 	getSelectedColumnNames,
-	getTableData,
 } from '../../../../store/selectors';
+import { UPDATE_COLUMNS } from '../../../../store/actionTypes';
 
 export const SelectingForm = (props) => {
 	const [input, setInput] = useState('');
-	const [selectedColumns, setSelectedColumns] = useState([]);
-	const [avaliableColumns, setAvaliableColumns] = useState([]);
 	const dispatch = useDispatch();
-
 	const selectedAttributes = useSelector(getSelectedColumnNames);
-	const tableData = useSelector(getTableData);
+	const [selectedColumns, setSelectedColumns] = useState(selectedAttributes);
 
-	useEffect(() => {
-		const attributes = Object.keys(tableData[0]);
-		const avaliableAttributes = attributes
-			.filter((x) => !selectedAttributes.includes(x))
-			.concat(selectedAttributes.filter((x) => !attributes.includes(x)));
-
-		setSelectedColumns(selectedAttributes);
-		setAvaliableColumns(avaliableAttributes);
-	}, [tableData, selectedAttributes]);
+	const attributes = useSelector(getAvailableAttributes);
+	const [avaliableColumns, setAvaliableColumns] = useState(attributes);
 
 	const filteredAvaliableColumns = avaliableColumns.filter((item) =>
 		item.toLowerCase().includes(input.toLowerCase())
@@ -44,15 +35,16 @@ export const SelectingForm = (props) => {
 	const dragEndHandler = (e, column) => {
 		const temp = [...selectedColumns];
 		temp.push(column);
-		const newAvaliableColumns = avaliableColumns.filter(function (item) {
-			return item !== column;
-		});
-		setAvaliableColumns(newAvaliableColumns);
+
+		const avaliableColumnsFiltered = avaliableColumns.filter(
+			(item) => item !== column
+		);
+		setAvaliableColumns(avaliableColumnsFiltered);
 		setSelectedColumns(temp);
 	};
 
 	const handleClickApply = () => {
-		dispatch({ type: 'UPDATE_COLUMNS', payload: selectedColumns });
+		dispatch({ type: UPDATE_COLUMNS, payload: selectedColumns });
 		props.setOpen(false);
 	};
 
@@ -61,10 +53,10 @@ export const SelectingForm = (props) => {
 		temp.push(selectedColumn);
 		setAvaliableColumns(temp);
 
-		const newSelectedColumns = selectedColumns.filter(function (item) {
+		const selectedColumnsFiltered = selectedColumns.filter(function (item) {
 			return item !== selectedColumn;
 		});
-		setSelectedColumns(newSelectedColumns);
+		setSelectedColumns(selectedColumnsFiltered);
 	};
 	return (
 		<StyledSelectingFormWrapper data-testid='selectingForm'>
