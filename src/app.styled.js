@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledApp = styled.div`
-	height: 800px;
+	margin-top: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

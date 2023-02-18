@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledSelectedAttribute = styled.div`
 	padding: 0 25px;
 	display: flex;
-	margin: 15px 25px;
+	margin: 5px 10px;
 	justify-content: space-between;
 	background-color: #1f2127;
 	border-radius: 15px;
@@ -12,15 +12,19 @@ export const StyledSelectedAttribute = styled.div`
 		margin: 7px 4px;
 		padding: 0 5px;
 	}
+	@media screen and (min-width: 1600px) and (max-width: 1950px) {
+		font-size: 13px;
+	}
 `;
 
 export const StyledSelectingBox = styled.div`
+	display: grid;
+	grid-template-rows: repeat(9, 1fr);
 	background-color: rgb(25, 27, 31);
 	width: 45%;
 	border-radius: 15px;
-	height: 600px;
-	@media screen and (max-width: 768px) {
-		height: 470px;
+	@media screen and (min-width: 1600px) and (max-width: 1950px) {
+		font-size: 13px;
 	}
 `;
 
@@ -28,6 +32,7 @@ export const StyledSelectingFormWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 50px;
+	font-size: 13px;
 	@media screen and (max-width: 768px) {
 		padding: 10px;
 	}
