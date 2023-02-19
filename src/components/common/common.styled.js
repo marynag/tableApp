@@ -12,4 +12,8 @@ export const StyledButton = styled.button`
 	@media screen and (max-width: 768px) {
 		width: 100px;
 	}
+	&:hover {
+		background-color: rgb(143, 59, 190);
+		cursor: pointer;
+	}
 `;
