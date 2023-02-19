@@ -2,7 +2,7 @@
   "name": "tableApp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://marynag.github.io/table-app",
+  "homepage": "https://marynag.github.io/tableApp",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
