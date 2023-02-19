@@ -8,6 +8,8 @@ export const StyledColumns = styled.td`
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+    padding: 7px 0;
+    font-size: 16px;
   
   @media screen and (max-width: 768px) {
     white-space: pre-wrap;

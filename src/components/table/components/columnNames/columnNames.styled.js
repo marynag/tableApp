@@ -13,7 +13,7 @@ export const StyledColumnNames = styled.th`
 	text-overflow: ellipsis;
 	overflow: hidden;
 	border-collapse: collapse;
-
+	padding: 5px;
 	@media screen and (max-width: 768px) {
 		white-space: pre-wrap;
 		word-break: break-all;

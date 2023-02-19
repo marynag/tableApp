@@ -104,7 +104,7 @@ export const SelectingForm = (props) => {
 								<StyledRemovingAttribute
 									onClick={() => handleSelectColumn(item)}
 								>
-									x
+									&#10005;
 								</StyledRemovingAttribute>
 							</StyledSelectedAttribute>
 						);
